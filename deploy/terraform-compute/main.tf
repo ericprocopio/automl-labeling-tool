@@ -1,7 +1,8 @@
+data "google_service_account" "automl_service_account" {
+  project   = var.project_id
+  account_id = "automl-service-account"
+}
 
-/******************************************
-	Compute instance configuration
- *****************************************/
  resource "google_compute_instance" "vm" {
    name         = var.name
    machine_type = var.machine_type
@@ -22,18 +23,11 @@
     }
 
    service_account {
-     email  = google_service_account.automl_vm_service_account.email
+     email  = data.google_service_account.automl_service_account.email
      scopes = var.scopes
    }
 
    metadata_startup_script = "docker run -dp 80:5000 ${var.container_image_path}"
-
 }
 
-
-resource google_service_account "automl_vm_service_account" {
-     project        = var.project_id
-     account_id     = "automl-vm-service-account"
-     display_name   = "automl-vm-service-account"
- }
 

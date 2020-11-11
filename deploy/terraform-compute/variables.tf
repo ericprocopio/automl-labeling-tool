@@ -54,3 +54,8 @@ variable "container_image_path" {
   description = "The path to the container image in GCR"
   type        = string
 }
+
+variable "service_account" {
+  description = "Service account for the Compute Engine instance"
+  type        = string
+}
