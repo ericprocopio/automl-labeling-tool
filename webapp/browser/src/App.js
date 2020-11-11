@@ -31,6 +31,7 @@ import GenerateCsvApi from './api/GenerateCsvApi.js'
 import DocumentListApi from './api/DocumentListApi.js'
 import PredictionApi from './api/PredictionApi.js'
 import FadeIn from 'react-fade-in';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 
 // refresh token
 import { refreshTokenSetup } from './lib/refreshToken';
@@ -61,10 +62,11 @@ class App extends Component {
   
   // TODO: Refactor all API calls to another library 
   // TODO: Switch to using context for access token instead of state 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props,context);
     // This binding is necessary to make `this` work in the callback
     this.refreshDocumentList = this.refreshDocumentList.bind(this);
+    this.handleDocumentUpdate = this.handleDocumentUpdate.bind(this);
     this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.handleLoginFailure = this.handleLoginFailure.bind(this)
@@ -83,12 +85,14 @@ class App extends Component {
 
   // this is evil but i don't fully understand react cest la vie
   forceUpdateHandler(){    
-    this.forceUpdate();
+    // I think i understand react now! key property is needed  for re renders to happend based on updated (props) properties :)
+   // this.forceUpdate();
   };
 
   // returns current document src when null
   async handleDocumentUpdate(newSrc) {
     this.setState({selectedDocument: newSrc}); 
+    this.props.history.push(newSrc);
     //this.forceUpdateHandler();
   }
 
@@ -337,6 +341,7 @@ class App extends Component {
         userProfile = {this.state.userProfile}
         documentList = {this.state.documentList}
         refreshDocumentList={this.refreshDocumentList}
+        handleDocumentUpdate={this.handleDocumentUpdate}
       />
       <DocumentHeader  
         selectedDocument={this.state.selectedDocument}  
@@ -344,7 +349,9 @@ class App extends Component {
         
         autoMLModelList={this.state.autoMLModelList}
         handleModelUpdate={this.handleModelUpdate} 
+        handleDocumentUpdate={this.handleDocumentUpdate}
         autoMLPrediction = {this.state.autoMLPrediction}
+        documentList = {this.state.documentList}
       />
       <hr/>
       <blockquote>
@@ -355,4 +362,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
