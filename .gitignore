@@ -73,6 +73,8 @@ typings/
 # terraform state files
 terraform.tfstate
 terraform.tfstate.backup 
+deploy/infrastructure/terraform.tfvars
+
 
 @byronwhitlock-google
- deploy/infrastructure/terraform.tfvars
+
