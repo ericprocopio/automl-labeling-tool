@@ -13,8 +13,18 @@ variable "subnet" {
   type        = string
 }
 
+variable "proxy_subnet" {
+  description = "Name of the subnet for the ILb proxies"
+  type        = string
+}
+
 variable "region" {
   description = "Region of the subnet and GCE instances"
+  type        = string
+}
+
+variable "instance_group_name" {
+  description = "Managed instance group name"
   type        = string
 }
 
@@ -30,5 +40,10 @@ variable "url_map_name" {
 
 variable "automl_backend" {
   description = "Name for the Managed Instance Group Backend Service"
+  type        = string
+}
+
+variable "automl_ilb_health_check" {
+  description = "Name for the Health Check"
   type        = string
 }

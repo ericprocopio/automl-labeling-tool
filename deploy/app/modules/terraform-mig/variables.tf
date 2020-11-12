@@ -45,8 +45,13 @@ variable "service_account" {
 
 variable "container_image_path" {
   description = "Path to AutoML Labelling Tool container image"
+  type        = string
 }
 
+variable "health_check_name" {
+  description = "Name for health check for the managed instance group"
+  type        = string
+}
 
 
 

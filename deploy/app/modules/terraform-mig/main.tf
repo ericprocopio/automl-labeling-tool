@@ -25,8 +25,15 @@ resource "google_compute_region_instance_group_manager" "rigm" {
     instance_template = google_compute_instance_template.instance_template.id
     name              = "primary"
   }
+
   base_instance_name = var.base_instance_name
   target_size        = var.mig_size
+
+  auto_healing_policies { 
+    health_check = google_compute_health_check.mig_health_check.self_link
+    initial_delay_sec = 60
+  } 
+
 }
 
 resource "google_compute_instance_template" "instance_template" {
@@ -57,5 +64,13 @@ resource "google_compute_instance_template" "instance_template" {
 
 }
 
+resource "google_compute_health_check" "mig_health_check" {
+  provider = google-beta
 
+  project = var.project_id
+  name    = var.health_check_name
 
+  http_health_check {
+    port = 80
+  }
+}
