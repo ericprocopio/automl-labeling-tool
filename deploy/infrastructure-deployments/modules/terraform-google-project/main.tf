@@ -34,7 +34,7 @@ locals {
     ])
   )
   activate_apis = distinct(concat(var.activate_apis, [
-    "serviceusage.googleapis.com" # Required for Prisma integration.
+    "serviceusage.googleapis.com"
   ]))
 }
 

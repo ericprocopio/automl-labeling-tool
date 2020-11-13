@@ -26,7 +26,7 @@ resource "google_compute_forwarding_rule" "automl_forwarding_rule" {
   depends_on  = [data.google_compute_subnetwork.proxy]
   
   project     = var.project_id
-  name        = "automl-ilb"
+  name        = var.forwarding_rule_name
   region      = var.region
 
   ip_protocol           = "TCP"

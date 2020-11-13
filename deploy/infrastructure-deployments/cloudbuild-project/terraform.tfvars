@@ -1,8 +1,8 @@
 #Example tfvars
 credentials_path = "../../../../terraform.json"
 
-name              = "auto-ml-project"
-project_id        = "auto-ml-project"
+name              = "automl-labelling-project"
+project_id        = "automl-labelling-project"
 random_project_id = true # disable to get exact project ID
 
 labels = {

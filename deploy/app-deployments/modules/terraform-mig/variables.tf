@@ -15,25 +15,29 @@ variable "zone" {
 
 variable "rigm_name" {
   description = "Name for the region instance group manager"
-  type        = string 
+  type        = string
+  default     = "automl-labeling-tool-mig" 
 }
 
 variable "base_instance_name" {
   description = "Base instance name to use for instances in the regional instance group"
   type        = string 
+  default     = "automl-labeling-tool-vm"
 }
 
 variable "mig_size" {
   description = "Size of the Managed Instance Group (i.e., number of GCE instances)"
   type        = number
+  default     = 1
 }
 
 variable "instance_template_name" {
   description = "Instance template name"
-  type = string
+  type        = string
+  default     = "automl-labeling-tool-template"
 }
 
-variable "subnet" {
+variable "subnetwork" {
   description = "Name of the subnet"
   type        = string
 }
@@ -51,23 +55,10 @@ variable "container_image_path" {
 variable "health_check_name" {
   description = "Name for health check for the managed instance group"
   type        = string
+  default     = "automl-labeling-tool-health-check"
 }
 
-
-
-/*
-variable "http_proxy_name" {
-  description = "Name for the HTTP proxy"
-  type        = string
+variable "network_tags" {
+  description = "Firewall network tags for the GCE instances"
+  type        = list(string)
 }
-
-variable "url_map_name" {
-  description = "Name for the URL map"
-  type        = string
-}
-
-variable "automl_backend" {
-  description = "Name for the Managed Instance Group Backend Service"
-  type        = string
-}
-*/

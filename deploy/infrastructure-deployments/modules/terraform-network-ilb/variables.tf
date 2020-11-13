@@ -11,6 +11,7 @@ variable "vpc_name" {
 variable "subnet_name" {
     description = "Name of the subnet"
     type        = string
+    default     = "automl-labeling-tool-ilb-proxy-subnet"
 }
 
 variable "subnet_region" {
@@ -21,4 +22,9 @@ variable "subnet_region" {
 variable "cidr_range" {
     description = "CIDR range for the subnet"
     type        = string
+}
+
+variable "target_tags" {
+    description = "Network tags for ILB proxies"
+    type        = list(string)
 }

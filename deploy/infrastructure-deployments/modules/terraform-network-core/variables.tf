@@ -5,12 +5,12 @@ variable "project" {
 
 variable "vpc_name" {
     description = "Name of the VPC"
-    type        = string
+    type        = string        
 }
-
 variable "subnet_name" {
     description = "Name of the subnet"
     type        = string
+    default     = "automl-labeling-subnet"
 }
 
 variable "subnet_region" {
@@ -26,4 +26,5 @@ variable "cidr_range" {
 variable "source_tags" {
     description = "Network tags for the firewall rule to apply"
     type        = list
+    default     = ["automl-labeling-tool"]
 }

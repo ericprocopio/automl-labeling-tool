@@ -1,9 +1,9 @@
 
 module "project" {
   source            = "../modules/terraform-google-project"
-  billing_account   = var.billing_account
-  org_id            = var.org_id
-  folder_id         = var.folder_id
+  billing_account   = var.billingAccount
+  org_id            = var.organizationID
+  folder_id         = var.folderID
   name              = var.name
   project_id        = var.project_id
   random_project_id = var.random_project_id
@@ -18,3 +18,7 @@ module "project" {
   member_attributes           = var.member_attributes
 }
 
+module "gcs" {
+  source = "../modules/terraform-cloudstorage"
+  project = module.project.project_id
+}

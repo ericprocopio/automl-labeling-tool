@@ -6,4 +6,5 @@ variable project {
 variable bucket_name {
     description = "GCS Bucket Name"
     type        = string
+    default     = "automl-labeling-tool-bucket"
 }

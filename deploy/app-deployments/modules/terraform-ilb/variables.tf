@@ -31,19 +31,29 @@ variable "instance_group_name" {
 variable "http_proxy_name" {
   description = "Name for the HTTP proxy"
   type        = string
+  default     = "automl-labeling-tool-http-proxy"
 }
 
 variable "url_map_name" {
   description = "Name for the URL map"
   type        = string
+  default     = "automl-labeling-tool-url-map"
 }
 
 variable "automl_backend" {
   description = "Name for the Managed Instance Group Backend Service"
   type        = string
+  default     = "automl-labeling-tool-backend"
 }
 
 variable "automl_ilb_health_check" {
   description = "Name for the Health Check"
   type        = string
+  default     = "automl-labeling-tool-ilb-healthcheck"
+}
+
+variable "forwarding_rule_name"{
+  description = "Name for the Internal Load Balancer"
+  type        = string
+  default     = "automl-labeling-tool-ilb"
 }
